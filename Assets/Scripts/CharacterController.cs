@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
@@ -11,14 +13,35 @@ public class CharacterController : MonoBehaviour
     }
 
     public Vector3 JumpForce;
+    public GameObject Target;
 
     private Vector3 CurrentVelocity;
 
     // Update is called once per frame
     void Update()
     {
-        var DesiredVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        DesiredVelocity *= Input.GetKey(KeyCode.LeftShift) ? 2.0f : 1.0f;
+        var DesiredVelocity = Vector3.zero;
+        
+        if (Target)
+        {
+            //var Direction = Target.transform.position - transform.position;
+            //Direction.y = 0.0f;
+            //DesiredVelocity = Vector3.ClampMagnitude(Direction, 1.0f);
+
+            var NavMeshAgent = GetComponent<NavMeshAgent>();
+            if (!NavMeshAgent.hasPath)
+            {
+                NavMeshAgent.SetDestination(Target.transform.position);
+            }
+
+            DesiredVelocity = NavMeshAgent.desiredVelocity;
+
+        }
+        else
+        {
+            DesiredVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            DesiredVelocity *= Input.GetKey(KeyCode.LeftShift) ? 2.0f : 1.0f;
+        }
 
         var Steering = DesiredVelocity - CurrentVelocity;
 
