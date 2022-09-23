@@ -21,21 +21,21 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         var DesiredVelocity = Vector3.zero;
-        
-        if (Target)
+        var NavMeshAgent = GetComponent<NavMeshAgent>();
+
+        if (NavMeshAgent)
         {
+            NavMeshAgent.updatePosition = false;
+
             //var Direction = Target.transform.position - transform.position;
             //Direction.y = 0.0f;
             //DesiredVelocity = Vector3.ClampMagnitude(Direction, 1.0f);
-
-            var NavMeshAgent = GetComponent<NavMeshAgent>();
-            if (!NavMeshAgent.hasPath)
+            /*if (!NavMeshAgent.hasPath)
             {
                 NavMeshAgent.SetDestination(Target.transform.position);
-            }
+            }*/
 
             DesiredVelocity = NavMeshAgent.desiredVelocity;
-
         }
         else
         {
