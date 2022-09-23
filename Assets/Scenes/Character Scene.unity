@@ -670,13 +670,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentBlackboard: {fileID: 0}
-  _serializedBlackboard: '{"_variables":{"LocalTarget":{"_value":1,"_name":"LocalTarget","_id":"838975c1-3ac5-4d46-a1d7-623eda49732b","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+  _serializedBlackboard: '{"_variables":{"SeekTarget":{"_value":1,"_name":"SeekTarget","_id":"9a86803b-2250-4270-ba61-11bde43693aa","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences:
   - {fileID: 0}
   - {fileID: 1096198393}
   _serializedVariables:
-  - _json: '{"_value":1,"_name":"LocalTarget","_id":"838975c1-3ac5-4d46-a1d7-623eda49732b","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+  - _json: '{"_value":1,"_name":"SeekTarget","_id":"9a86803b-2250-4270-ba61-11bde43693aa","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references:
     - {fileID: 0}

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
+    private NavMeshAgent navMeshAgent;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,25 +18,31 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 CurrentVelocity;
 
+    void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if (navMeshAgent)
+        {
+            navMeshAgent.updatePosition = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         var DesiredVelocity = Vector3.zero;
-        var NavMeshAgent = GetComponent<NavMeshAgent>();
-
-        if (NavMeshAgent)
+        
+        if (navMeshAgent)
         {
-            NavMeshAgent.updatePosition = false;
-
             //var Direction = Target.transform.position - transform.position;
             //Direction.y = 0.0f;
             //DesiredVelocity = Vector3.ClampMagnitude(Direction, 1.0f);
-            /*if (!NavMeshAgent.hasPath)
-            {
-                NavMeshAgent.SetDestination(Target.transform.position);
-            }*/
+            //if (!NavMeshAgent.hasPath)
+            //{
+            //    NavMeshAgent.SetDestination(Target.transform.position);
+            //}
 
-            DesiredVelocity = NavMeshAgent.desiredVelocity;
+            DesiredVelocity = navMeshAgent.desiredVelocity;
         }
         else
         {
@@ -46,9 +53,9 @@ public class CharacterController : MonoBehaviour
         var Steering = DesiredVelocity - CurrentVelocity;
 
         CurrentVelocity += Steering * 5.0f * Time.deltaTime;
-        if (CurrentVelocity != Vector3.zero)
+        if (DesiredVelocity != Vector3.zero)
         {
-            transform.forward = CurrentVelocity.normalized;
+            transform.forward = DesiredVelocity.normalized;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
